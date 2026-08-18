@@ -1,14 +1,16 @@
 <?php
-    function listNotes(array &$notes): void {
+
+trait ListTrait { 
+    public function listNotes(): void {
         system('cls');
-        if (empty($notes)) {
+        if (empty($this->notes)) {
             echo "Belum ada catatan.\n";
             fgets(STDIN); 
             return;
         } 
             
-        foreach ($notes as $note) {
-            echo "\nId: {$note['id']}, Title: {$note['title']}";
+        foreach ($this->notes as $note) {
+            echo "\nId: {$note->id}, Title: {$note->title}";
         }
 
         echo "\nMasukkan ID untuk lihat detail catatan atau '0' untuk kembali: ";
@@ -19,11 +21,12 @@
         }
 
         $id = (int)$choice;
-        foreach ($notes as $note) {
-            if ($note['id'] === $id) {
-                detailNote($notes, $id);
+        foreach ($this->notes as $note) {
+            if ($note->id === $id) {
+                $this->detailNote($id);
                 return;
             }
-        }
+        } 
         echo "Catatan tidak ditemukan.\n";
     }
+}

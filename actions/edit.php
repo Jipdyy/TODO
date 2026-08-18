@@ -1,10 +1,12 @@
 <?php
-    function editNote(array &$notes, int $id): string {
+
+trait EditTrait {
+    public function editNote(int $id): string {
         system('cls');
-        foreach ($notes as $index => $note) {
-            if ($notes[$index]['id'] === $id) {
-                echo "\nJudul: {$note['title']}\n";
-                echo "Konten: {$note['content']}";
+        foreach ($this->notes as $index => $note) {
+            if ($this->notes[$index]->id === $id) {
+                echo "\nJudul: {$note->title}\n";
+                echo "Konten: {$note->content}";
 
                 echo "\nMasukkan judul baru (kosongkan untuk tidak mengubah):";
                 $newTitle = trim(fgets(STDIN));
@@ -13,10 +15,10 @@
                 $newContent = trim(fgets(STDIN));
 
                 if ($newTitle !== '') {
-                    $notes[$index]['title'] = $newTitle;
+                    $this->notes[$index]->title = $newTitle;
                 }
                 if ($newContent !== '') {
-                    $notes[$index]['content'] = $newContent;
+                    $this->notes[$index]->content = $newContent;
                 }
                 return 'refresh';
             }
@@ -24,3 +26,4 @@
         echo "\nCatatan berhasil ditambahkan.\n";
         return 'refresh';
     }
+}

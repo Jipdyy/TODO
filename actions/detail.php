@@ -1,35 +1,38 @@
 <?php
-    function detailNote(array &$notes, int $id): void {
-        system('cls');
-        foreach ($notes as $note) {
-            if ($note['id'] === $id) {
-                echo "Judul : {$note['title']}\n";
-                echo "Konten : {$note['content']}\n";
+
+trait DetailTrait {
+    public function detailNote(int $id): void {
+     system('cls');
+        foreach ($this->notes as $note) {
+            if ($note->id === $id) {
+                echo "Judul : {$note->title}\n";
+                echo "Konten : {$note->content}\n";
                 echo "\n1. Ubah note\n";
                 echo "2. Hapus note\n";
                 echo "3. Kembali ke list\n";
                 break;
             }
         }
-
+ 
         echo "\nPilih menu: ";
         $choice = trim(fgets(STDIN));
 
         switch ($choice) {
             case '1':
-                $status = editNote($notes, $id);
+                $status = $this->editNote($id);
                 if ($status === 'refresh') {
-                    detailNote($notes, $id);
+                    $this->detailNote($id);
                 }
                 return;
             case '2':
-                $status = deleteNote($notes, $id);
+                $status = $this->deleteNote($id);
                 if ($status === 'deleted') {
-                    listNotes($notes);
+                    $this->listNotes();
                 }
                     return;
             case '3':   
-                listNotes($notes);
+                $this->listNotes();
                 return;
         }
     }
+}
