@@ -2,7 +2,7 @@
 
 trait ListTrait { 
     public function listNotes(): void {
-        system('cls');
+        system('clear');
         if (empty($this->notes)) {
             echo "Belum ada catatan.\n";
             fgets(STDIN); 
@@ -28,5 +28,6 @@ trait ListTrait {
             }
         } 
         echo "Catatan tidak ditemukan.\n";
+        sleep(2);
     }
 }

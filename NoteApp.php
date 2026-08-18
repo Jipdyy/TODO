@@ -13,7 +13,7 @@ class NoteApp {
     private int $noteId = 1;
 
     public function mainMenu(): void {
-        system('cls');
+        system('clear');
         echo "\n-- Note App --\n";
         echo "1. Lihat notes\n";
         echo "2. Tambah note\n";

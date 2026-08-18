@@ -2,9 +2,9 @@
 
 trait EditTrait {
     public function editNote(int $id): string {
-        system('cls');
-        foreach ($this->notes as $index => $note) {
-            if ($this->notes[$index]->id === $id) {
+        system('clear');
+        foreach ($this->notes as $note) {
+            if ($note->id === $id) {
                 echo "\nJudul: {$note->title}\n";
                 echo "Konten: {$note->content}";
 
@@ -15,10 +15,10 @@ trait EditTrait {
                 $newContent = trim(fgets(STDIN));
 
                 if ($newTitle !== '') {
-                    $this->notes[$index]->title = $newTitle;
+                    $note->title = $newTitle;
                 }
                 if ($newContent !== '') {
-                    $this->notes[$index]->content = $newContent;
+                    $note->content = $newContent;
                 }
                 return 'refresh';
             }

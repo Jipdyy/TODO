@@ -2,7 +2,7 @@
 
 trait DetailTrait {
     public function detailNote(int $id): void {
-     system('cls');
+     system('clear');
         foreach ($this->notes as $note) {
             if ($note->id === $id) {
                 echo "Judul : {$note->title}\n";
